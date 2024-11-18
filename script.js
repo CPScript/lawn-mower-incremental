@@ -25,14 +25,14 @@ function createGrid() {
     }
 }
 
-// Function to reset the grass color to dark green after 1 second (gradually)
+// Function to reset the grass color to dark green after 2 seconds
 function regrowGrass() {
     const cells = document.querySelectorAll('.grid-cell');
     cells.forEach(cell => {
         if (cell.style.backgroundColor === 'lightgreen') {
             setTimeout(() => {
                 cell.style.backgroundColor = '#3e7e42'; // Dark green (unmowed grass)
-            }, 1000); // Delay before transitioning back to dark green
+            }, 2000); // Delay before transitioning back to dark green (2 seconds)
         }
     });
 }
@@ -61,6 +61,9 @@ function moveMower(direction) {
     // Update the mower's position on the screen
     mower.style.top = `${mowerPosition.y * 50}px`;
     mower.style.left = `${mowerPosition.x * 50}px`;
+
+    // Call regrowGrass after mowing
+    regrowGrass(); // Start the regrowth process
 }
 
 // Event listeners for arrow key movements
